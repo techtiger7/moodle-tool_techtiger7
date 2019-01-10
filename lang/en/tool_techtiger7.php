@@ -1,1 +1,2 @@
-$string['pluginname'] = 'My first Moodle plugin';
+<?php
+$string['techtiger7'] = 'My first Moodle plugin';
