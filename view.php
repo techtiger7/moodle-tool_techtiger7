@@ -22,7 +22,12 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-defined('MOODLE_INTERNAL') || die();
+require_once(__DIR__ . '/../../../config.php');
+$url = new moodle_url('/admin/tool/techtiger7/index.php');
+$PAGE->set_context(context_system::instance());
+$PAGE->set_url($url);
+$PAGE->set_pagelayout('report');
+$PAGE->set_title('Hello to the techtiger7 plugin');
+$PAGE->set_heading(get_string('pluginname', 'tool_techtiger7'));
 
-$string['pluginname'] = 'My first Moodle plugin';
-$string['helloworld'] = 'Hello World!';
+echo get_string('helloworld', 'tool_techtiger7');
