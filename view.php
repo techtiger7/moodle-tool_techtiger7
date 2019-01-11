@@ -27,8 +27,6 @@ require_once($CFG->libdir.'/adminlib.php');
 
 global $OUTPUT;
 
-//admin_externalpage_setup('techtiger7');
-
 $url = new moodle_url('/admin/tool/techtiger7/index.php');
 
 $cmid = optional_param('id', '-', PARAM_INT);
@@ -37,10 +35,10 @@ $PAGE->set_url($url);
 $PAGE->set_pagelayout('report');
 $PAGE->set_title(get_string('pluginname', 'tool_techtiger7'));
 $PAGE->set_heading(get_string('pluginname', 'tool_techtiger7'));
+require_login();
 
 echo $OUTPUT->header();
 echo $OUTPUT->heading('Overview');
-//
 
 echo html_writer::tag('p', get_string('plugincourseid', 'tool_techtiger7', ['id' => $cmid]));
 
