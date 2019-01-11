@@ -23,11 +23,31 @@
  */
 
 require_once(__DIR__ . '/../../../config.php');
+require_once($CFG->libdir.'/adminlib.php');
+
+global $OUTPUT;
+
+//admin_externalpage_setup('techtiger7');
+
 $url = new moodle_url('/admin/tool/techtiger7/index.php');
+
+$cmid = optional_param('id', '-', PARAM_INT);
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url($url);
 $PAGE->set_pagelayout('report');
-$PAGE->set_title('Hello to the techtiger7 plugin');
+$PAGE->set_title(get_string('pluginname', 'tool_techtiger7'));
 $PAGE->set_heading(get_string('pluginname', 'tool_techtiger7'));
 
-echo get_string('helloworld', 'tool_techtiger7');
+echo $OUTPUT->header();
+echo $OUTPUT->heading('Overview');
+//
+
+echo html_writer::tag('p', get_string('plugincourseid', 'tool_techtiger7', ['id' => $cmid]));
+
+echo html_writer::tag('p', get_string('plugindescription', 'tool_techtiger7'));
+
+$greeting = '<strong>' . get_string('helloworld', 'tool_techtiger7') . '</strong>';
+
+echo html_writer::div(format_text($greeting));
+
+echo $OUTPUT->footer();

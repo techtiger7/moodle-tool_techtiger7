@@ -22,11 +22,11 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2019011002;
+$plugin->version = 2019011101;
 $plugin->requires = 2018051703;
 $plugin->component = 'tool_techtiger7';
 $plugin->maturity = MATURITY_ALPHA;
-$plugin->release = '1.1';
+$plugin->release = '1.2';
 
 $plugin->dependencies = [
     'mod_data' => ANY_VERSION
