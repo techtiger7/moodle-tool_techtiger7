@@ -15,19 +15,16 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'techtiger7', language 'en', branch 'MOODLE_35_STABLE'
- *
- * @package tool_techtiger7
+ * @package   tool_techtiger7
  * @copyright 2018, Tom Dickman <twdickman@gmail.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$string['pluginname'] = 'techtiger7 plugin';
-$string['plugindescription'] = 'My first Moodle plugin!';
-$string['helloworld'] = 'Hello World!';
-$string['plugincourseid'] = '{$a->id}';
+$courseid = get_string('plugincourseid', 'tool_techtiger7');
+$courseindexurl = new moodle_url('/admin/tool/techtiger7/index.php');
+$courseindexurl->param('id', $courseid);
 
-// Navigation Strings.
-$string['pluginhome'] = 'techtiger7 Home';
+$indexnode = $PAGE->navigation->add(get_string('pluginhome', 'tool_techtiger7'), $courseindexurl, navigation_node::TYPE_CONTAINER);
+$indexnode->make_active();
