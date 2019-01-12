@@ -25,12 +25,15 @@
 require_once(__DIR__ . '/../../../config.php');
 require_once($CFG->libdir.'/adminlib.php');
 
-global $OUTPUT;
+global $OUTPUT, $DB;
 
 $url = new moodle_url('/admin/tool/techtiger7/index.php');
 
 $cmid = required_param('id', PARAM_INT);
 $url->param('id', $cmid);
+
+$users = $DB->get_records('user');
+$user = $DB->get_record('user', array('id' => 1));
 
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url($url);
@@ -43,11 +46,13 @@ echo $OUTPUT->header();
 echo $OUTPUT->heading('Overview');
 
 echo html_writer::tag('p', 'Course ID: ' . get_string('plugincourseid', 'tool_techtiger7', ['id' => $cmid]));
-
-echo html_writer::tag('p', get_string('plugindescription', 'tool_techtiger7'));
-
 $greeting = '<strong>' . get_string('helloworld', 'tool_techtiger7') . '</strong>';
 
 echo html_writer::div(format_text($greeting));
+
+echo html_writer::tag('p', get_string('plugindescription', 'tool_techtiger7'));
+
+echo html_writer::div(get_string('currentuseremail', 'tool_techtiger7', ['email' => $user->email]));
+
 
 echo $OUTPUT->footer();
