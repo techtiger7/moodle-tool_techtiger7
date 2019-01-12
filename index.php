@@ -29,7 +29,9 @@ global $OUTPUT;
 
 $url = new moodle_url('/admin/tool/techtiger7/index.php');
 
-$cmid = optional_param('id', '-', PARAM_INT);
+$cmid = required_param('id', PARAM_INT);
+$url->param('id', $cmid);
+
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url($url);
 $PAGE->set_pagelayout('report');
@@ -40,7 +42,7 @@ require_login();
 echo $OUTPUT->header();
 echo $OUTPUT->heading('Overview');
 
-echo html_writer::tag('p', get_string('plugincourseid', 'tool_techtiger7', ['id' => $cmid]));
+echo html_writer::tag('p', 'Course ID: ' . get_string('plugincourseid', 'tool_techtiger7', ['id' => $cmid]));
 
 echo html_writer::tag('p', get_string('plugindescription', 'tool_techtiger7'));
 
