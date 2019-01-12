@@ -20,6 +20,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+defined('MOODLE_INTERNAL') || die();
+
 $courseid = get_string('plugincourseid', 'tool_techtiger7');
 $courseindexurl = new moodle_url('/admin/tool/techtiger7/index.php');
 $courseindexurl->param('id', $courseid);
