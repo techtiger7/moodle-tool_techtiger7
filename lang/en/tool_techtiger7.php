@@ -31,3 +31,6 @@ $string['plugincourseid'] = '{$a->id}';
 
 // Navigation Strings.
 $string['pluginhome'] = 'techtiger7 Home';
+
+// Database Strings.
+$string['currentuseremail'] = 'Email: {$a->email}';
