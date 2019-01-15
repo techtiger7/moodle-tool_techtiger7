@@ -34,3 +34,10 @@ $string['pluginhome'] = 'techtiger7 Home';
 
 // Database Strings.
 $string['currentuseremail'] = 'Email: {$a->email}';
+
+// Table Strings.
+$string['courseid'] = 'Course ID';
+$string['coursename'] = 'Course Name';
+$string['courseabbreviation'] = 'Course Abbreviation';
+$string['coursedescription'] = 'Course Description';
+

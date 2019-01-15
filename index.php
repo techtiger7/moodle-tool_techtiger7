@@ -24,6 +24,8 @@
 
 require_once(__DIR__ . '/../../../config.php');
 require_once($CFG->libdir.'/adminlib.php');
+require_once($CFG->libdir . '/tablelib.php');
+
 
 global $OUTPUT, $DB;
 
@@ -34,6 +36,8 @@ $url->param('id', $cmid);
 
 $users = $DB->get_records('user');
 $user = $DB->get_record('user', array('id' => 1));
+
+$courses = $DB->get_records('course');
 
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url($url);
@@ -54,5 +58,20 @@ echo html_writer::tag('p', get_string('plugindescription', 'tool_techtiger7'));
 
 echo html_writer::div(get_string('currentuseremail', 'tool_techtiger7', ['email' => $user->email]));
 
+$table = new flexible_table('tool_techtiger7_users');
+$values = get_object_vars(($courses[key($courses)]));
+$table->define_columns(array('id', 'fullname', 'shortname', 'summary'));
+$table->define_headers(array(
+    get_string('courseid', 'tool_techtiger7'),
+    get_string('coursename', 'tool_techtiger7'),
+    get_string('courseabbreviation', 'tool_techtiger7'),
+    get_string('coursedescription', 'tool_techtiger7')));
+$table->setup();
+
+foreach ($courses as $course) {
+    $row = array($course->id, $course->fullname, $course->shortname, $course->summary);
+    $table->add_data($row);
+}
+$table->finish_output();
 
 echo $OUTPUT->footer();
