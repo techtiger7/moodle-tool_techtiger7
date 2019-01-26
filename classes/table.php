@@ -30,11 +30,11 @@ class table extends \table_sql {
 
     protected $plugincourses = array();
 
-    public function __construct($uniqueid, array $columnstodisplay) {
+    public function __construct($uniqueid, array $columnstodisplay, $courseid) {
         global $DB;
 
         parent::__construct($uniqueid);
-        $this->plugincourses = $DB->get_records('tool_techtiger7');
+        $this->plugincourses = $DB->get_records('tool_techtiger7', array('courseid' => $courseid));
         self::define_columns($columnstodisplay);
         self::define_headers($columnstodisplay);
         self::setup();
@@ -46,7 +46,7 @@ class table extends \table_sql {
 
     public function define_headers($columns) {
         $headers = array_map(function ($column) {
-            return get_string('tbl_' . $column, 'tool_techtiger7');
+            return $this->col_name($column);
         }, $columns);
 
         parent::define_headers($headers);
@@ -62,11 +62,18 @@ class table extends \table_sql {
             }, ARRAY_FILTER_USE_KEY);
             // Convert time fields to date format.
             array_walk($row, function (&$value, $key) {
-                $value = (preg_match('/^time|time$/', $key) && !    is_null($value)) ? date('r', $value) : $value;
+                $value = (preg_match('/^time|time$/', $key) && ! is_null($value)) ? date('r', $value) : $value;
             });
-
+            // Convert completion status fields to strings 'yes' or 'no'
+            array_walk($row, function (&$value, $key) {
+               $value = (preg_match('/complete/', $key)) ? ($value <= 0) ? get_string('no') : get_string('yes') : $value;
+            });
             parent::add_data($row);
         }
+    }
+
+    public function col_name($column) {
+        return get_string('tbl_' . $column, 'tool_techtiger7');
     }
 
     public function finish_output($closeexportclassdoc = true) {

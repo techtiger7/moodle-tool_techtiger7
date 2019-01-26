@@ -39,8 +39,12 @@ $string['currentuseremail'] = 'Email: {$a->email}';
 $string['tbl_id'] = 'Table ID';
 $string['tbl_courseid'] = 'Course ID';
 $string['tbl_name'] = 'Course Name';
-$string['tbl_completed'] = 'Completion Status';
+$string['tbl_completed'] = 'Complete';
 $string['tbl_priority'] = 'Course Priority';
 $string['tbl_timecreated'] = 'DateTime Created';
-$string['tbl_timemodified'] = 'Last Modified';
+$string['tbl_timemodified'] = 'DateTime Last Modified';
+
+// Boolean Strings.
+$string['yes'] = 'Yes';
+$string['no'] = 'No';
 
