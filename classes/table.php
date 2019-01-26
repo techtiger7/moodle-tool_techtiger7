@@ -28,20 +28,17 @@ defined('MOODLE_INTERNAL') || die();
 
 class table extends \table_sql {
 
-//    protected $columns;
-//
-//    protected $courses;
+    protected $plugincourses = array();
 
-    public function __construct($uniqueid) {
+    public function __construct($uniqueid, array $columnstodisplay) {
         global $DB;
 
         parent::__construct($uniqueid);
-        $courses = $DB->get_records('tool_techtiger7');
-        $columns = array('courseid', 'name', 'completed', 'priority', 'timecreated', 'timemodified');
-        self::define_columns(array_keys(get_object_vars($courses[key($courses)])));
-        self::define_headers($columns);
+        $this->plugincourses = $DB->get_records('tool_techtiger7');
+        self::define_columns($columnstodisplay);
+        self::define_headers($columnstodisplay);
         self::setup();
-        self::add_rows($courses, $columns);
+        self::add_rows($this->plugincourses, $columnstodisplay);
         self::finish_output();
 
     }
@@ -59,10 +56,15 @@ class table extends \table_sql {
     public function add_rows($courses, $columns) {
         foreach ($courses as $course) {
             $course = get_object_vars($course);
+            // Filter row to only include specified columns.
             $row = array_filter($course, function ($key) use ($columns) {
                 return in_array($key, $columns);
             }, ARRAY_FILTER_USE_KEY);
-            // Convert to a numerically keyed row of data to add to the table.
+            // Convert time fields to date format.
+            array_walk($row, function (&$value, $key) {
+                $value = (preg_match('/^time|time$/', $key) && !    is_null($value)) ? date('r', $value) : $value;
+            });
+
             parent::add_data($row);
         }
     }

@@ -58,6 +58,6 @@ echo html_writer::tag('p', get_string('plugindescription', 'tool_techtiger7'));
 
 echo html_writer::div(get_string('currentuseremail', 'tool_techtiger7', ['email' => $user->email]));
 
-$table = new \tool_techtiger7\table('tool_techtiger7_users');
+$table = new \tool_techtiger7\table('tool_techtiger7_users', array('courseid', 'name', 'completed', 'priority', 'timecreated', 'timemodified'));
 
 echo $OUTPUT->footer();
