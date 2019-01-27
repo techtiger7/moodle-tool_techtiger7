@@ -64,9 +64,9 @@ class table extends \table_sql {
             array_walk($row, function (&$value, $key) {
                 $value = (preg_match('/^time|time$/', $key) && ! is_null($value)) ? date('r', $value) : $value;
             });
-            // Convert completion status fields to strings 'yes' or 'no'
+            // Convert completion status fields to strings 'yes' or 'no'.
             array_walk($row, function (&$value, $key) {
-               $value = (preg_match('/complete/', $key)) ? ($value <= 0) ? get_string('no') : get_string('yes') : $value;
+                $value = (preg_match('/complete/', $key)) ? ($value <= 0) ? get_string('no') : get_string('yes') : $value;
             });
             parent::add_data($row);
         }
@@ -74,10 +74,6 @@ class table extends \table_sql {
 
     public function col_name($column) {
         return get_string('tbl_' . $column, 'tool_techtiger7');
-    }
-
-    public function finish_output($closeexportclassdoc = true) {
-        parent::finish_output($closeexportclassdoc);
     }
 
 }
