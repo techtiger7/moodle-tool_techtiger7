@@ -18,7 +18,7 @@
  * Strings for component 'techtiger7', language 'en', branch 'MOODLE_35_STABLE'
  *
  * @package tool_techtiger7
- * @copyright 2018, Tom Dickman <twdickman@gmail.com>
+ * @copyright 2019, Tom Dickman <twdickman@gmail.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
