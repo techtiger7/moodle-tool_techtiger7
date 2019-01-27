@@ -18,12 +18,14 @@
  * Strings for component 'techtiger7', language 'en', branch 'MOODLE_35_STABLE'
  *
  * @package tool_techtiger7
- * @copyright 2018, Tom Dickman <twdickman@gmail.com>
+ * @copyright 2019, Tom Dickman <twdickman@gmail.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 require_once(__DIR__ . '/../../../config.php');
 require_once($CFG->libdir.'/adminlib.php');
+require_once($CFG->libdir . '/tablelib.php');
+
 
 global $OUTPUT, $DB;
 
@@ -32,8 +34,7 @@ $url = new moodle_url('/admin/tool/techtiger7/index.php');
 $cmid = required_param('id', PARAM_INT);
 $url->param('id', $cmid);
 
-$users = $DB->get_records('user');
-$user = $DB->get_record('user', array('id' => 1));
+$courses = $DB->get_records('course');
 
 $PAGE->set_context(context_system::instance());
 $PAGE->set_url($url);
@@ -54,5 +55,7 @@ echo html_writer::tag('p', get_string('plugindescription', 'tool_techtiger7'));
 
 echo html_writer::div(get_string('currentuseremail', 'tool_techtiger7', ['email' => $user->email]));
 
+$table = new \tool_techtiger7\table('tool_techtiger7_users',
+    array('courseid', 'name', 'completed', 'priority', 'timecreated', 'timemodified'), $cmid);
 
 echo $OUTPUT->footer();

@@ -16,17 +16,17 @@
 
 /**
  * @package   tool_techtiger7
- * @copyright 2018, Tom Dickman <twdickman@gmail.com>
+ * @copyright 2019, Tom Dickman <twdickman@gmail.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2019011201;
+$plugin->version = 2019012701;
 $plugin->requires = 2018051703;
 $plugin->component = 'tool_techtiger7';
 $plugin->maturity = MATURITY_ALPHA;
-$plugin->release = '1.4';
+$plugin->release = '1.5';
 
 $plugin->dependencies = [
     'mod_data' => ANY_VERSION

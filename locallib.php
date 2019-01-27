@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Strings for component 'techtiger7', language 'en', branch 'MOODLE_35_STABLE'
+ * local functions and constants for module attendance
  *
  * @package tool_techtiger7
  * @copyright 2018, Tom Dickman <twdickman@gmail.com>
@@ -23,28 +23,4 @@
  */
 
 defined('MOODLE_INTERNAL') || die();
-
-$string['pluginname'] = 'techtiger7 plugin';
-$string['plugindescription'] = 'My first Moodle plugin!';
-$string['helloworld'] = 'Hello World!';
-$string['plugincourseid'] = '{$a->id}';
-
-// Navigation Strings.
-$string['pluginhome'] = 'techtiger7 Home';
-
-// Database Strings.
-$string['currentuseremail'] = 'Email: {$a->email}';
-
-// Table Strings.
-$string['tbl_id'] = 'Table ID';
-$string['tbl_courseid'] = 'Course ID';
-$string['tbl_name'] = 'Course Name';
-$string['tbl_completed'] = 'Complete';
-$string['tbl_priority'] = 'Course Priority';
-$string['tbl_timecreated'] = 'DateTime Created';
-$string['tbl_timemodified'] = 'DateTime Last Modified';
-
-// Boolean Strings.
-$string['yes'] = 'Yes';
-$string['no'] = 'No';
 
